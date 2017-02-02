@@ -1,0 +1,42 @@
+{
+  "name": "@potatosalad/magnus",
+  "version": "1.0.0",
+  "description": "Magnus",
+  "main": "dist/magnus.js",
+  "module": "dist/magnus.mjs",
+  "jsnext:main": "dist/magnus.mjs",
+  "repository": "https://github.com/roguefinancial/node-magnus",
+  "author": "Andrew Bennett <andrew@pixid.com>",
+  "license": "MPL-2.0",
+  "scripts": {
+    "prebuild": "eslint src",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "apollo-client": "*",
+    "isomorphic-fetch": "*",
+    "jwt-decode": "*",
+    "lodash": "*",
+    "redux-thunk": "*"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.22.0",
+    "babelrc-rollup": "^3.0.0",
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "rollup": "^0.41.4",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-watch": "^3.2.2"
+  }
+}
