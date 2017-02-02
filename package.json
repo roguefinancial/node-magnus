@@ -1,6 +1,6 @@
 {
   "name": "@potatosalad/magnus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Magnus",
   "main": "dist/magnus.js",
   "module": "dist/magnus.mjs",
