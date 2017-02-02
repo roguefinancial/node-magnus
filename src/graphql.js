@@ -179,3 +179,9 @@ export function createGraphQLNetworkInterface (options) {
     return new GraphQLHTTPFetchNetworkInterface(options.uri, options.opts)
   }
 }
+
+export default {
+  GraphQLHTTPFetchNetworkInterface,
+  GraphQLHTTPBatchedNetworkInterface,
+  createGraphQLNetworkInterface
+}
