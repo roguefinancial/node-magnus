@@ -1,6 +1,7 @@
 import MagnusClient from './client'
 import { MagnusError } from './error'
 import MagnusSession from './session'
+import MagnusStorage from './storage'
 
 /* eslint-disable key-spacing, no-multi-spaces */
 
@@ -9,6 +10,9 @@ import MagnusSession from './session'
 export const AUTHENTICATE_REQUEST = 'AUTHENTICATE_REQUEST'
 export const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS'
 export const AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE'
+export const LOAD_SESSION_REQUEST = 'LOAD_SESSION_REQUEST'
+export const LOAD_SESSION_SUCCESS = 'LOAD_SESSION_SUCCESS'
+export const LOAD_SESSION_FAILURE = 'LOAD_SESSION_FAILURE'
 export const SIGN_IN_REQUEST      = 'SIGN_IN_REQUEST'
 export const SIGN_IN_SUCCESS      = 'SIGN_IN_SUCCESS'
 export const SIGN_IN_FAILURE      = 'SIGN_IN_FAILURE'
@@ -37,6 +41,31 @@ function authenticateSuccess (session) {
 function authenticateFailure (error) {
   return {
     type: AUTHENTICATE_FAILURE,
+    payload: {
+      error
+    }
+  }
+}
+
+function loadSessionRequest () {
+  return {
+    type: LOAD_SESSION_REQUEST,
+    payload: null
+  }
+}
+
+function loadSessionSuccess (session) {
+  return {
+    type: LOAD_SESSION_SUCCESS,
+    payload: {
+      session
+    }
+  }
+}
+
+function loadSessionFailure (error) {
+  return {
+    type: LOAD_SESSION_FAILURE,
     payload: {
       error
     }
@@ -107,6 +136,19 @@ export const MagnusActions = {
       return dispatch(_authenticate())
         .then((session) => dispatch(authenticateSuccess(session)))
         .catch((error) => Promise.reject(dispatch(authenticateFailure(error))))
+    }
+  },
+
+  loadSession () {
+    return (dispatch, getState) => {
+      const { magnus: state } = getState()
+      const session = MagnusStorage.load()
+      dispatch(loadSessionRequest())
+      if (typeof session !== 'undefined' && session !== null) {
+        return Promise.resolve(loadSessionSuccess(state.session))
+      } else {
+        return Promise.reject(dispatch(loadSessionFailure(new MagnusError('invalid session'))))
+      }
     }
   },
 

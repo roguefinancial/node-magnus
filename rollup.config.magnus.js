@@ -14,7 +14,7 @@ export default {
     {
       dest: pkg.main,
       format: 'umd',
-      moduleName: 'rollupStarterProject',
+      moduleName: 'magnus',
       sourceMap: true
     },
     {

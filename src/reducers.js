@@ -3,6 +3,9 @@ import {
   AUTHENTICATE_REQUEST,
   AUTHENTICATE_SUCCESS,
   AUTHENTICATE_FAILURE,
+  LOAD_SESSION_REQUEST,
+  LOAD_SESSION_SUCCESS,
+  LOAD_SESSION_FAILURE,
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILURE,
@@ -55,6 +58,28 @@ const magnus = createReducer(initialState, {
       requests: state.requests - 1,
       session: null,
       statusText: `Authentication Error: ${error.message}`
+    }
+  },
+  [LOAD_SESSION_REQUEST]: (state) => {
+    return {
+      ...state,
+      requests: state.requests + 1
+    }
+  },
+  [LOAD_SESSION_SUCCESS]: (state, { session }) => {
+    return {
+      ...state,
+      session: {
+        ...session,
+        version: state.version
+      }
+    }
+  },
+  [LOAD_SESSION_FAILURE]: (state) => {
+    return {
+      ...state,
+      requests: state.requests - 1,
+      session: null
     }
   },
   [SIGN_IN_REQUEST]: (state) => {

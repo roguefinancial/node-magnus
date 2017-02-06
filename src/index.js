@@ -4,8 +4,6 @@ import session from './session'
 import storage from './storage'
 import store from './store'
 import util from './util'
-import GraphQLMagnus from './graphql'
-import VueMagnus from './vue'
 
 class Magnus {
   constructor () {
@@ -20,10 +18,6 @@ class Magnus {
 
   get expiresAfter () {
     return session.getIdTokenExpiresAfter(this.state)
-  }
-
-  get graphql () {
-    return GraphQLMagnus
   }
 
   get session () {
@@ -47,12 +41,12 @@ class Magnus {
     return util
   }
 
-  get vue () {
-    return VueMagnus
-  }
-
   authenticate (force = false) {
     return store.dispatch(actions.authenticate(force))
+  }
+
+  loadSession () {
+    return store.dispatch(actions.loadSession())
   }
 
   signin (options) {

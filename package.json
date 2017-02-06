@@ -10,7 +10,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "prebuild": "eslint src",
-    "build": "rollup -c"
+    "build": "rollup -c rollup.config.magnus.js && rollup -c rollup.config.graphql.js && rollup -c rollup.config.vue.js"
   },
   "dependencies": {
     "apollo-client": "*",
