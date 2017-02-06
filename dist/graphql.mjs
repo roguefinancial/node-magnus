@@ -383,7 +383,7 @@ var GraphQLHTTPFetchNetworkInterface = function (_HTTPBearerTransport) {
         }, options, {
           headers: Object.assign({}, {
             'Accept': '*/*',
-            'Content-Type': 'application/json charset=utf-8'
+            'Content-Type': 'application/json;charset=UTF-8'
           }, options.headers)
         })
       });
@@ -538,7 +538,7 @@ var GraphQLHTTPBatchedNetworkInterface = function (_GraphQLHTTPFetchNetw) {
         }, options, {
           headers: Object.assign({}, {
             'Accept': '*/*',
-            'Content-Type': 'application/json charset=utf-8'
+            'Content-Type': 'application/json;charset=UTF-8'
           }, options.headers)
         })
       });

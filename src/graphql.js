@@ -23,7 +23,7 @@ export class GraphQLHTTPFetchNetworkInterface extends HTTPBearerTransport {
       }, options, {
         headers: Object.assign({}, {
           'Accept': '*/*',
-          'Content-Type': 'application/json charset=utf-8'
+          'Content-Type': 'application/json;charset=UTF-8'
         }, options.headers)
       })
     })
@@ -162,7 +162,7 @@ export class GraphQLHTTPBatchedNetworkInterface extends GraphQLHTTPFetchNetworkI
       }, options, {
         headers: Object.assign({}, {
           'Accept': '*/*',
-          'Content-Type': 'application/json charset=utf-8'
+          'Content-Type': 'application/json;charset=UTF-8'
         }, options.headers)
       })
     })
