@@ -140,12 +140,11 @@ export const MagnusActions = {
   },
 
   loadSession () {
-    return (dispatch, getState) => {
-      const { magnus: state } = getState()
+    return (dispatch) => {
       const session = MagnusStorage.load()
       dispatch(loadSessionRequest())
       if (typeof session !== 'undefined' && session !== null) {
-        return Promise.resolve(loadSessionSuccess(state.session))
+        return Promise.resolve(dispatch(loadSessionSuccess(session)))
       } else {
         return Promise.reject(dispatch(loadSessionFailure(new MagnusError('invalid session'))))
       }

@@ -459,14 +459,11 @@ var MagnusActions = {
     };
   },
   loadSession: function loadSession() {
-    return function (dispatch, getState) {
-      var _getState2 = getState(),
-          state = _getState2.magnus;
-
+    return function (dispatch) {
       var session = MagnusStorage.load();
       dispatch(loadSessionRequest());
       if (typeof session !== 'undefined' && session !== null) {
-        return Promise.resolve(loadSessionSuccess(state.session));
+        return Promise.resolve(dispatch(loadSessionSuccess(session)));
       } else {
         return Promise.reject(dispatch(loadSessionFailure(new MagnusError('invalid session'))));
       }
@@ -487,8 +484,8 @@ var MagnusActions = {
   },
   signout: function signout() {
     return function (dispatch, getState) {
-      var _getState3 = getState(),
-          state = _getState3.magnus;
+      var _getState2 = getState(),
+          state = _getState2.magnus;
 
       dispatch(signoutRequest());
       return _signout().then(function () {
@@ -517,8 +514,8 @@ function _authenticateWithTokeninfo() {
   return function (dispatch, getState) {
     dispatch;
 
-    var _getState4 = getState(),
-        state = _getState4.magnus;
+    var _getState3 = getState(),
+        state = _getState3.magnus;
 
     var idToken = MagnusSession.getIdToken(state);
     if (idToken && !MagnusSession.isSessionExpired(state) && !MagnusSession.isIdTokenExpired(state)) {
